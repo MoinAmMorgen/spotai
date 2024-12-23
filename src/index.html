@@ -4,16 +4,18 @@
     <meta charset="UTF-8" />
     <title>SpotAI</title>
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <form>
       <div class="search">
-        <span class="search-icon material-symbols-outlined">search</span>
-        <input type="search" class="search-input" placeholder="Ask ChatGPT a question ..." />
-        <button type="button" class="search-clear material-symbols-outlined">close</button>
+        <span class="search-icon material-icons">search</span>
+        <input type="search" class="search-input" id="search-input" placeholder="Ask ChatGPT a question ..." />
+        <span type="button" class="search-clear material-icons">close</span>
       </div>
-    </form>
+
+      <div class="search-response">
+        <textarea class="response-text" id="response-text" readonly></textarea>
+      </div>
     <script defer src="render.js"></script>
   </body>
 </html>
