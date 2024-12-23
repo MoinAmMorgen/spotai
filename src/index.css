@@ -4,7 +4,6 @@ body {
   padding: 0;
   background-color: transparent;
   position: relative; /* Add this so the fixed position of the search bar works as expected */
-  scroll-behavior: smooth;
 }
 
 .search {
@@ -84,6 +83,7 @@ input[type="search"]::-webkit-search-cancel-button {
   box-sizing: border-box;
   white-space: pre-wrap;
   word-wrap: break-word;
+  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {

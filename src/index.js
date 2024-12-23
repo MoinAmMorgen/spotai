@@ -1,6 +1,5 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
-require('dotenv').config();
 
 let win;
 
