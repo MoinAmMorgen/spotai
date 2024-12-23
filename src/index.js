@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
+require('dotenv').config();
 
 let win;
 
@@ -25,16 +26,6 @@ const createWindow = () => {
 
 app.whenReady().then(createWindow);
 
-ipcMain.on('app-quit', () => {
-  console.log('Received app-quit signal. Closing app...');
-  app.quit();
-});
-
-ipcMain.handle('set-window-size', (event, { width, height }) => {
-  win.setSize(width, height);
-});
-
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -46,4 +37,14 @@ app.on('activate', () => {
     createWindow();
   }
 });
+
+ipcMain.on('app-quit', () => {
+  console.log('Received app-quit signal. Closing app...');
+  app.quit();
+});
+
+ipcMain.handle('set-window-size', (event, { width, height }) => {
+  win.setSize(width, height);
+});
+
 // In this file you can include the rest of your app's specific main process
