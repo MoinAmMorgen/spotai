@@ -1,10 +1,12 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 
+let win;
+
 const createWindow = () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     width: 550,
-    height: 100,
+    height: 200,
     resizable: false,
     transparent: true,
     frame: false,
@@ -28,6 +30,11 @@ ipcMain.on('app-quit', () => {
   app.quit();
 });
 
+ipcMain.handle('set-window-size', (event, { width, height }) => {
+  win.setSize(width, height);
+});
+
+
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -39,5 +46,4 @@ app.on('activate', () => {
     createWindow();
   }
 });
-
 // In this file you can include the rest of your app's specific main process
