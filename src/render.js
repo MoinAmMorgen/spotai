@@ -1,8 +1,8 @@
 import { GoogleGenerativeAI } from "./../node_modules/@google/generative-ai/dist/index.mjs";
 
-const close = document.getElementById(".search-clear");
-const search = document.getElementById(".search-input");
-const response_text = document.getElementById(".response-text");
+const close = document.getElementById("search-clear");
+const search = document.getElementById("search-input");
+const response_text = document.getElementById("response-text");
 
 if (close) {
   close.addEventListener("click", () => {
@@ -24,38 +24,21 @@ search.addEventListener("keydown", async (event) => {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     response_text.value = response.text();
+    response_text.scrollTop = response_text.scrollHeight;
     if (response_text) {
       search.value = "";
     }
   }
 });
 
-//
-// Change size of textarea based on its content
-//
+
 
 function adjustHeight() {
   response_text.style.height = response_text.scrollHeight + "px";
 }
 
-search.addEventListener("input", async () => {
-  if (search.value.trim() === "@close") {
-    console.log("Closing the app");
-    window.electron.ipcRenderer.send("app-quit");
-  }
-  if (search.value.trim() === "@clear") {
-    console.log("Clearing the response text");
-    response_text.value = "";
-    response_text.style.height = "0px";
-    response_text.style.overflowY = "hidden";
-    await window.electron.ipcRenderer.invoke("set-window-size", {
-      width: 550,
-      height: 200,
-    });
-  }
-});
-
 setInterval(() => {
+  if (response_text.value === "") return;
   async function setWindowSize(newSize) {
     await window.electron.ipcRenderer.invoke("set-window-size", newSize);
   }
@@ -69,3 +52,21 @@ setInterval(() => {
   setWindowSize({ width: 550, height: window_height });
   adjustHeight();
 }, 1000);
+
+
+search.addEventListener("input", async () => {
+  if (search.value.trim() === "@close") {
+    console.log("Closing the app");
+    window.electron.ipcRenderer.send("app-quit");
+  }
+  if (search.value.trim() === "@clear") {
+    console.log("Clearing the response text");
+    response_text.value = "";
+    search.value = "";
+    response_text.style.height = "0px";
+    await window.electron.ipcRenderer.invoke("set-window-size", {
+      width: 550,
+      height: 200,
+    });
+  }
+});
