@@ -39,19 +39,6 @@ function adjustHeight() {
 }
 
 search.addEventListener("input", async () => {
-  if (search.value.trim() === "@sim") {
-    console.log("Simulating a response");
-    response_text.value =
-      "Far far away, behind the word mountains, far from the countries Vokalia";
-    response_text.value +=
-      " and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove";
-    response_text.value +=
-      " right at the coast of the Semantics, a large language ocean. A small river named";
-    response_text.value +=
-      " Duden flows by their place and supplies it with the necessary regelialia. It is a";
-    response_text.value +=
-      " paradisematic country, in which roasted parts of sentences fly into your mouth.";
-  }
   if (search.value.trim() === "@close") {
     console.log("Closing the app");
     window.electron.ipcRenderer.send("app-quit");
