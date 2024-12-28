@@ -1,8 +1,8 @@
 import { GoogleGenerativeAI } from "./../node_modules/@google/generative-ai/dist/index.mjs";
 
-const close = document.querySelector(".search-clear");
-const search = document.querySelector(".search-input");
-const response_text = document.querySelector(".response-text");
+const close = document.getElementById(".search-clear");
+const search = document.getElementById(".search-input");
+const response_text = document.getElementById(".response-text");
 
 if (close) {
   close.addEventListener("click", () => {

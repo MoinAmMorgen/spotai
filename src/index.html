@@ -12,11 +12,12 @@
   <body class="font-roboto m-0 p-0 bg-transparent relative no-scrollbar">
     <div
       class="w-full flex fixed justify-center items-center p-4 top-0 left-0 bg-gray-100 rounded-full z-1000 box-border max-w-full"
+      id="search"
     >
       <span class="material-icons">search</span>
       <input
         type="search"
-        class="ml-2 p-2 rounded bg-transparent outline-none no-scrollbar"
+        class="h-0 ml-2 p-2 rounded bg-transparent outline-none no-scrollbar"
         id="search-input"
         placeholder="Ask ChatGPT a question ..."
       />
@@ -25,7 +26,7 @@
 
     <div class="mt-20 p-4">
       <textarea
-        class="w-full h-64 p-4 border rounded no-scrollbar resize-none"
+        class="w-full h-64 p-4 border rounded no-scrollbar resize-none outline-none"
         id="response-text"
         readonly
       ></textarea>
