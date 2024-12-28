@@ -1,5 +1,5 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
-const path = require('node:path');
+const { app, BrowserWindow, ipcMain } = require("electron");
+const path = require("node:path");
 
 let win;
 
@@ -12,37 +12,37 @@ const createWindow = () => {
     frame: false,
     autoHideMenuBar: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      contextIsolation: true, 
-      enableRemoteModule: false, 
-      nodeIntegration: false 
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      enableRemoteModule: false,
+      nodeIntegration: false,
     },
   });
 
-  win.loadFile(path.join(__dirname, 'index.html'));
+  win.loadFile(path.join(__dirname, "index.html"));
   win.webContents.openDevTools(); // Open DevTools for debugging
 };
 
 app.whenReady().then(createWindow);
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
     app.quit();
   }
 });
 
-app.on('activate', () => {
+app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
   }
 });
 
-ipcMain.on('app-quit', () => {
-  console.log('Received app-quit signal. Closing app...');
+ipcMain.on("app-quit", () => {
+  console.log("Received app-quit signal. Closing app...");
   app.quit();
 });
 
-ipcMain.handle('set-window-size', (event, { width, height }) => {
+ipcMain.handle("set-window-size", (event, { width, height }) => {
   win.setSize(width, height);
 });
 
