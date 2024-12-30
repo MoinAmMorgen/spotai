@@ -46,4 +46,8 @@ ipcMain.handle("set-window-size", (event, { width, height }) => {
   win.setSize(width, height);
 });
 
+icpMain.handle("get-api-key", event => {
+  return process.env.GEMINI_API_KEY;
+});
+
 // In this file you can include the rest of your app's specific main process
