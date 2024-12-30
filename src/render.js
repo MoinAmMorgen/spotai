@@ -14,7 +14,7 @@ search.addEventListener("keydown", async (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     if (!search.value.trim()) return;
-    const apiKey = ""; // TODO: Add secure way to access api token
+    const apiKey = await window.electron.ipcRenderer.invoke("get-api-key"); // TODO: Add secure way to access api token
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
