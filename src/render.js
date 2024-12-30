@@ -14,7 +14,7 @@ search.addEventListener("keydown", async (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     if (!search.value.trim()) return;
-    const apiKey = "AIzaSyA36Z9yIc1zs-dlVH6N8QnwsVNFW1scXe8";
+    const apiKey = ""; // TODO: Add secure way to access api token
     const genAI = new GoogleGenerativeAI(apiKey);
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
